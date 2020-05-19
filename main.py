@@ -22,7 +22,8 @@ dom = cv2.bitwise_and(img, img, mask=circle_img)
 raveled = dom.ravel()
 
 # thresholding
-_,dom = cv2.threshold(dom,70,255,cv2.THRESH_BINARY_INV)
+a, dom = cv2.threshold(dom, 127, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+# dom = cv2.adaptiveThreshold(dom, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY_INV, 51, 20)
 
 # mask out again
 dom = cv2.bitwise_and(dom, dom, mask=circle_img)
